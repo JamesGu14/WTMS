@@ -1,0 +1,371 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ntwtmsModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="child">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="parentId" Type="int" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="birthYear" Type="int" />
+          <Property Name="birthMonth" Type="int" />
+          <Property Name="gender" Type="char" MaxLength="1" />
+          <Property Name="comment" Type="text" />
+        </EntityType>
+        <EntityType Name="parent">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="50" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="mobile" Type="varchar" MaxLength="20" />
+          <Property Name="password" Type="varchar" MaxLength="200" />
+          <Property Name="createdAt" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+          <Property Name="isActive" Type="bool" />
+          <Property Name="deactivateAt" Type="datetime" Precision="0" />
+        </EntityType>
+        <EntityType Name="saleshistory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="childId" Type="int" />
+          <Property Name="userId" Type="int" />
+        </EntityType>
+        <EntityType Name="systemuser">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="30" />
+          <Property Name="name" Type="varchar" MaxLength="30" />
+          <Property Name="password" Type="varchar" MaxLength="100" />
+          <Property Name="wtmsRoleId" Type="int" />
+          <Property Name="createdAt" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+          <Property Name="isActive" Type="tinyint" />
+          <Property Name="deactivatedAt" Type="datetime" Precision="0" />
+          <Property Name="comment" Type="text" />
+        </EntityType>
+        <EntityType Name="wtmsrole">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rolename" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <Association Name="child_ibfk_1">
+          <End Role="parent" Type="Self.parent" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="child" Type="Self.child" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="parent">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="child">
+              <PropertyRef Name="parentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="saleshistory_ibfk_1">
+          <End Role="child" Type="Self.child" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="saleshistory" Type="Self.saleshistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="child">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="saleshistory">
+              <PropertyRef Name="childId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="saleshistory_ibfk_2">
+          <End Role="systemuser" Type="Self.systemuser" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="saleshistory" Type="Self.saleshistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="systemuser">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="saleshistory">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="systemuser_ibfk_1">
+          <End Role="wtmsrole" Type="Self.wtmsrole" Multiplicity="0..1" />
+          <End Role="systemuser" Type="Self.systemuser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wtmsrole">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="systemuser">
+              <PropertyRef Name="wtmsRoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ntwtmsModelStoreContainer">
+          <EntitySet Name="child" EntityType="Self.child" Schema="ntwtms" store:Type="Tables" />
+          <EntitySet Name="parent" EntityType="Self.parent" Schema="ntwtms" store:Type="Tables" />
+          <EntitySet Name="saleshistory" EntityType="Self.saleshistory" Schema="ntwtms" store:Type="Tables" />
+          <EntitySet Name="systemuser" EntityType="Self.systemuser" Schema="ntwtms" store:Type="Tables" />
+          <EntitySet Name="wtmsrole" EntityType="Self.wtmsrole" Schema="ntwtms" store:Type="Tables" />
+          <AssociationSet Name="child_ibfk_1" Association="Self.child_ibfk_1">
+            <End Role="parent" EntitySet="parent" />
+            <End Role="child" EntitySet="child" />
+          </AssociationSet>
+          <AssociationSet Name="saleshistory_ibfk_1" Association="Self.saleshistory_ibfk_1">
+            <End Role="child" EntitySet="child" />
+            <End Role="saleshistory" EntitySet="saleshistory" />
+          </AssociationSet>
+          <AssociationSet Name="saleshistory_ibfk_2" Association="Self.saleshistory_ibfk_2">
+            <End Role="systemuser" EntitySet="systemuser" />
+            <End Role="saleshistory" EntitySet="saleshistory" />
+          </AssociationSet>
+          <AssociationSet Name="systemuser_ibfk_1" Association="Self.systemuser_ibfk_1">
+            <End Role="wtmsrole" EntitySet="wtmsrole" />
+            <End Role="systemuser" EntitySet="systemuser" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ntwtmsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="child">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="parentId" Type="Int32" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="birthYear" Type="Int32" />
+          <Property Name="birthMonth" Type="Int32" />
+          <Property Name="gender" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="comment" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="parent" Relationship="Self.child_ibfk_1" FromRole="child" ToRole="parent" />
+          <NavigationProperty Name="saleshistories" Relationship="Self.saleshistory_ibfk_1" FromRole="child" ToRole="saleshistory" />
+        </EntityType>
+        <EntityType Name="parent">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="mobile" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="createdAt" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="isActive" Type="Boolean" />
+          <Property Name="deactivateAt" Type="DateTime" />
+          <NavigationProperty Name="children" Relationship="Self.child_ibfk_1" FromRole="parent" ToRole="child" />
+        </EntityType>
+        <EntityType Name="saleshistory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="childId" Type="Int32" />
+          <Property Name="userId" Type="Int32" />
+          <NavigationProperty Name="child" Relationship="Self.saleshistory_ibfk_1" FromRole="saleshistory" ToRole="child" />
+          <NavigationProperty Name="systemuser" Relationship="Self.saleshistory_ibfk_2" FromRole="saleshistory" ToRole="systemuser" />
+        </EntityType>
+        <EntityType Name="systemuser">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="wtmsRoleId" Type="Int32" />
+          <Property Name="createdAt" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="isActive" Type="SByte" />
+          <Property Name="deactivatedAt" Type="DateTime" />
+          <Property Name="comment" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="saleshistories" Relationship="Self.saleshistory_ibfk_2" FromRole="systemuser" ToRole="saleshistory" />
+          <NavigationProperty Name="wtmsrole" Relationship="Self.systemuser_ibfk_1" FromRole="systemuser" ToRole="wtmsrole" />
+        </EntityType>
+        <EntityType Name="wtmsrole">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rolename" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="systemusers" Relationship="Self.systemuser_ibfk_1" FromRole="wtmsrole" ToRole="systemuser" />
+        </EntityType>
+        <Association Name="child_ibfk_1">
+          <End Role="parent" Type="Self.parent" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="child" Type="Self.child" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="parent">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="child">
+              <PropertyRef Name="parentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="saleshistory_ibfk_1">
+          <End Role="child" Type="Self.child" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="saleshistory" Type="Self.saleshistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="child">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="saleshistory">
+              <PropertyRef Name="childId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="saleshistory_ibfk_2">
+          <End Role="systemuser" Type="Self.systemuser" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="saleshistory" Type="Self.saleshistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="systemuser">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="saleshistory">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="systemuser_ibfk_1">
+          <End Role="wtmsrole" Type="Self.wtmsrole" Multiplicity="0..1" />
+          <End Role="systemuser" Type="Self.systemuser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wtmsrole">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="systemuser">
+              <PropertyRef Name="wtmsRoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ntwtmsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="children" EntityType="Self.child" />
+          <EntitySet Name="parents" EntityType="Self.parent" />
+          <EntitySet Name="saleshistories" EntityType="Self.saleshistory" />
+          <EntitySet Name="systemusers" EntityType="Self.systemuser" />
+          <EntitySet Name="wtmsroles" EntityType="Self.wtmsrole" />
+          <AssociationSet Name="child_ibfk_1" Association="Self.child_ibfk_1">
+            <End Role="parent" EntitySet="parents" />
+            <End Role="child" EntitySet="children" />
+          </AssociationSet>
+          <AssociationSet Name="saleshistory_ibfk_1" Association="Self.saleshistory_ibfk_1">
+            <End Role="child" EntitySet="children" />
+            <End Role="saleshistory" EntitySet="saleshistories" />
+          </AssociationSet>
+          <AssociationSet Name="saleshistory_ibfk_2" Association="Self.saleshistory_ibfk_2">
+            <End Role="systemuser" EntitySet="systemusers" />
+            <End Role="saleshistory" EntitySet="saleshistories" />
+          </AssociationSet>
+          <AssociationSet Name="systemuser_ibfk_1" Association="Self.systemuser_ibfk_1">
+            <End Role="wtmsrole" EntitySet="wtmsroles" />
+            <End Role="systemuser" EntitySet="systemusers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ntwtmsModelStoreContainer" CdmEntityContainer="ntwtmsEntities">
+          <EntitySetMapping Name="children">
+            <EntityTypeMapping TypeName="ntwtmsModel.child">
+              <MappingFragment StoreEntitySet="child">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="parentId" ColumnName="parentId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="birthYear" ColumnName="birthYear" />
+                <ScalarProperty Name="birthMonth" ColumnName="birthMonth" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="parents">
+            <EntityTypeMapping TypeName="ntwtmsModel.parent">
+              <MappingFragment StoreEntitySet="parent">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="mobile" ColumnName="mobile" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="createdAt" ColumnName="createdAt" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="deactivateAt" ColumnName="deactivateAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="saleshistories">
+            <EntityTypeMapping TypeName="ntwtmsModel.saleshistory">
+              <MappingFragment StoreEntitySet="saleshistory">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="childId" ColumnName="childId" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="systemusers">
+            <EntityTypeMapping TypeName="ntwtmsModel.systemuser">
+              <MappingFragment StoreEntitySet="systemuser">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="wtmsRoleId" ColumnName="wtmsRoleId" />
+                <ScalarProperty Name="createdAt" ColumnName="createdAt" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="deactivatedAt" ColumnName="deactivatedAt" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wtmsroles">
+            <EntityTypeMapping TypeName="ntwtmsModel.wtmsrole">
+              <MappingFragment StoreEntitySet="wtmsrole">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="rolename" ColumnName="rolename" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
