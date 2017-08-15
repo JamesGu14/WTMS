@@ -8,13 +8,13 @@
         <EntityTypeShape EntityType="ntwtmsModel.child" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
         <EntityTypeShape EntityType="ntwtmsModel.parent" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
         <EntityTypeShape EntityType="ntwtmsModel.saleshistory" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ntwtmsModel.systemuser" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="ntwtmsModel.wtmsrole" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
         <AssociationConnector Association="ntwtmsModel.child_ibfk_1" ManuallyRouted="false" />
         <AssociationConnector Association="ntwtmsModel.saleshistory_ibfk_1" ManuallyRouted="false" />
-        <AssociationConnector Association="ntwtmsModel.saleshistory_ibfk_2" ManuallyRouted="false" />
-        <AssociationConnector Association="ntwtmsModel.systemuser_ibfk_1" ManuallyRouted="false" />
-      </Diagram>
+        <EntityTypeShape EntityType="ntwtmsModel.systemuser" Width="1.5" PointX="3" PointY="1" />
+        <AssociationConnector Association="ntwtmsModel.saleshistory_ibfk_2" />
+        <AssociationConnector Association="ntwtmsModel.systemuser_ibfk_1" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

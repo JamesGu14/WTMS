@@ -28,6 +28,11 @@ namespace WTMS.Backend
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.min.css",
                       "~/Content/site.css"));
+
+            // For Login page only
+            bundles.Add(new StyleBundle("~/Content/logincss").Include(
+                      "~/Content/bootstrap.min.css",
+                      "~/Content/login.css"));
         }
     }
 }

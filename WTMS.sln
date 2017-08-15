@@ -6,6 +6,13 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WTMS.DataAccess", "WTMS.DataAccess\WTMS.DataAccess.csproj", "{4CC7B9C3-D237-49ED-AD2A-CC09D4D50760}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WTMS.Backend", "WTMS.Backend\WTMS.Backend.csproj", "{FACAE62B-C3F4-482B-88B4-BD3097E64F66}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B3D11F0C-86EE-4FD2-A877-2DE67B8031A6} = {B3D11F0C-86EE-4FD2-A877-2DE67B8031A6}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WTMS.Service", "WTMS.Service\WTMS.Service.csproj", "{B3D11F0C-86EE-4FD2-A877-2DE67B8031A6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WTMS.Common", "WTMS.Common\WTMS.Common.csproj", "{FE3E01AD-656E-4392-B6AD-20F21DA1B062}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +28,14 @@ Global
 		{FACAE62B-C3F4-482B-88B4-BD3097E64F66}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FACAE62B-C3F4-482B-88B4-BD3097E64F66}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FACAE62B-C3F4-482B-88B4-BD3097E64F66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3D11F0C-86EE-4FD2-A877-2DE67B8031A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3D11F0C-86EE-4FD2-A877-2DE67B8031A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3D11F0C-86EE-4FD2-A877-2DE67B8031A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3D11F0C-86EE-4FD2-A877-2DE67B8031A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE3E01AD-656E-4392-B6AD-20F21DA1B062}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE3E01AD-656E-4392-B6AD-20F21DA1B062}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE3E01AD-656E-4392-B6AD-20F21DA1B062}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE3E01AD-656E-4392-B6AD-20F21DA1B062}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,8 +1,18 @@
 ﻿
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
 }
 
-<h2>Login</h2>
+<div class="container">
 
+    <form class="form-signin" action="/Login" method="post">
+        <h2 class="form-signin-heading">请登录</h2>
+        <label for="userName" class="sr-only">用户名</label>
+        <input type="text" id="userName" name="userName" class="form-control" placeholder="用户名" required autofocus>
+        <label for="password" class="sr-only">密码</label>
+        <input type="password" id="password" name="password" class="form-control" placeholder="密码" required>
+        <input class="btn btn-lg btn-primary btn-block" type="submit" value="登陆 " id="submitLogin" />
+    </form>
+
+</div> <!-- /container -->

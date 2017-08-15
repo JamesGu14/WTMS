@@ -28,7 +28,7 @@ namespace WTMS.DataAccess
         public DbSet<child> children { get; set; }
         public DbSet<parent> parents { get; set; }
         public DbSet<saleshistory> saleshistories { get; set; }
-        public DbSet<systemuser> systemusers { get; set; }
         public DbSet<wtmsrole> wtmsroles { get; set; }
+        public DbSet<systemuser> systemusers { get; set; }
     }
 }

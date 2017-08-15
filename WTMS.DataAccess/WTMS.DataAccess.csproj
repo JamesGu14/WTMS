@@ -50,6 +50,7 @@
     <Compile Include="child.cs">
       <DependentUpon>NTWTMS.tt</DependentUpon>
     </Compile>
+    <Compile Include="DomainModel\SystemUserModel.cs" />
     <Compile Include="NTWTMS.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -75,6 +76,7 @@
     <Compile Include="systemuser.cs">
       <DependentUpon>NTWTMS.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="wtmsrole.cs">
       <DependentUpon>NTWTMS.tt</DependentUpon>
     </Compile>
@@ -105,8 +107,6 @@
       <LastGenOutput>NTWTMS.cs</LastGenOutput>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DomainModel\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

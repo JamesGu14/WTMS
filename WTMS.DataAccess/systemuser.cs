@@ -25,7 +25,7 @@ namespace WTMS.DataAccess
         public string password { get; set; }
         public Nullable<int> wtmsRoleId { get; set; }
         public Nullable<System.DateTime> createdAt { get; set; }
-        public Nullable<sbyte> isActive { get; set; }
+        public Nullable<bool> isActive { get; set; }
         public Nullable<System.DateTime> deactivatedAt { get; set; }
         public string comment { get; set; }
     
