@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>南通维特牧思</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+
+</head>
+<body>
+    <div data-role="header">
+        <img src="~/Content/Images/ntwtms_banner.jpg" style="width: 100%" />
+
+        <div class="ui-grid-c" style="background: white; margin-top: -4px">
+            <div class="ui-block-a">
+                <div style="text-align: center">
+                    <img src="~/Content/Images/Icon/qinzi.png" class="square" style="background: #f9aa1a"/>
+                </div>
+            </div>
+            <div class="ui-block-b">
+                <div style="text-align: center">
+                    <img src="~/Content/Images/Icon/music.png" class="square" style="background: #d671a9" />
+                </div>
+            </div>
+            <div class="ui-block-c">
+                <div style="text-align: center">
+                    <img src="~/Content/Images/Icon/sport.png" class="square" style="background: #87ad22" />
+                </div>
+            </div>
+            <div class="ui-block-d">
+                <div style="text-align: center">
+                    <img src="~/Content/Images/Icon/wit.png" class="square" style="background: #3fa6b9" />
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div data-role="content">
+        @RenderBody()
+    </div>
+
+    <div data-role="footer" data-position="fixed" data-theme="a">
+        <div data-role="navbar" data-iconpos="top">
+            <ul>
+                <li><a id="homelink" href="#" data-icon="home" class="ui-btn-active">首页</a></li>
+                <li><a id="bookinglink" href="#" data-icon="star">预约</a></li>
+                <li><a id="mylink" href="#" data-icon="gear">我的</a></li>
+            </ul>
+        </div>
+        <!-- /navbar -->
+    </div>
+
+    
+    @Scripts.Render("~/bundles/jquerymobile")
+    @RenderSection("scripts", required: false)
+
+    <script>
+        $(document).ready(function () {
+            if (location.href.indexOf('/Home/Index') > -1) {
+                $('#homelink').addClass('ui-btn-active')
+                $('#bookinglink').removeClass('ui-btn-active')
+                $('#mylink').removeClass('ui-btn-active')
+            } else if (location.href.indexOf('/Home/Register') > -1) {
+                $('#bookinglink').addClass('ui-btn-active')
+                $('#homelink').removeClass('ui-btn-active')
+                $('#mylink').removeClass('ui-btn-active')
+            } else if (location.href.indexOf('/Home/MyPage') > -1) {
+                $('#homelink').removeClass('ui-btn-active')
+                $('#bookinglink').removeClass('ui-btn-active')
+                $('#mylink').addClass('ui-btn-active')
+            }
+
+            $('#homelink').click(function () {
+                location.href = '/Home/Index'
+            })
+
+            $('#bookinglink').click(function () {
+                location.href = '/Home/Register'
+            })
+
+            $('#mylink').click(function () {
+                location.href = '/Home/MyPage'
+            })
+        })
+    </script>
+</body>
+
+</html>

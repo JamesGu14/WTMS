@@ -1,0 +1,14 @@
+#title {
+  background-color: #f7931e;
+  width: 100%;
+  margin: 0;
+  padding: 5px;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif
+}
+
+.square {
+    width: 65%; 
+    border-radius: 100%;
+    margin: 10px;
+}

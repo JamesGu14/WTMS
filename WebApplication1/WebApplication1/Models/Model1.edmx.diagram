@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d9e81d23db884ee69a2ed19d02fe01df" Name="Diagram1">
+        <EntityTypeShape EntityType="ntwtmsModel.parent" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ntwtmsModel.wtmsrole" Width="1.5" PointX="6.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ntwtmsModel.child" Width="1.5" PointX="9" PointY="1.125" />
+        <EntityTypeShape EntityType="ntwtmsModel.saleshistory" Width="1.5" PointX="11.25" PointY="5.5" />
+        <AssociationConnector Association="ntwtmsModel.child_ibfk_1" />
+        <AssociationConnector Association="ntwtmsModel.saleshistory_ibfk_1" />
+        <EntityTypeShape EntityType="ntwtmsModel.systemuser" Width="1.5" PointX="9" PointY="5.375" />
+        <AssociationConnector Association="ntwtmsModel.saleshistory_ibfk_2" />
+        <AssociationConnector Association="ntwtmsModel.systemuser_ibfk_1" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
