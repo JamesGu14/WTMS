@@ -10,7 +10,9 @@ namespace WTMS.DataAccess.ViewModel
     {
     }
 
-    public class TrialParentViewModel
+    public class ParentViewModel
     {
+        public parent Parent { get; set; }
+        public IEnumerable<child> Children { get; set; }
     }
 }

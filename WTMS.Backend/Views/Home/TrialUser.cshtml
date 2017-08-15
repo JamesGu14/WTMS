@@ -1,0 +1,88 @@
+﻿@model List<WTMS.DataAccess.ViewModel.ParentViewModel>
+@{
+    ViewBag.Title = "TrialUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>试听课报名</h2>
+<style>
+    .short-text {
+        width: 75px;
+    }
+    .medium-text {
+        width: 120px;
+    }
+</style>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>孩子姓名</th>
+                <th>孩子昵称</th>
+                <th>家长姓名</th>
+                <th>和宝宝关系</th>
+                <th>手机号</th>
+                <th>注册时间</th>
+                <th>状态</th>
+                <th>备注</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                for (var i = 0; i < Model.Count; i++)
+                {
+                    <tr>
+                        <td>
+                            <input type="text" class="short-text" id="child-@Model[i].Children.ElementAt(0).id" value="@Model[i].Children.ElementAt(0).name" />
+                            @for (var j = 1; j < Model[i].Children.ToList().Count; j ++) {
+                                <br />
+                                <input type="text" class="short-text" id="child-@Model[i].Children.ElementAt(j).id" value="@Model[i].Children.ElementAt(j).name" />
+                            }
+                        </td>
+                        <td>
+                            <input type="text" class="short-text" id="child-@Model[i].Children.ElementAt(0).id" value="@Model[i].Children.ElementAt(0).nickName" />
+                            @for (var j = 1; j < Model[i].Children.ToList().Count; j++)
+                            {
+                                <br />
+                                <input type="text" class="short-text" id="child-@Model[i].Children.ElementAt(j).id" value="@Model[i].Children.ElementAt(j).nickName" />
+                            }
+                        </td>
+                        <td>
+                            <input type="text" class="short-text" id="parent-name-@Model[i].Parent.id" value="@Model[i].Parent.name" />
+                        </td>
+                        <td>
+                            <input type="text" class="short-text" id="parent-rel-@Model[i].Parent.id" value="@Model[i].Parent.relationToChild" />
+                        </td>
+                        <td>
+                            <input type="text" class="medium-text" id="parent-phone-@Model[i].Parent.id" value="@Model[i].Parent.mobile" />
+                        </td>
+                        <td class="medium-text">
+                            @Model[i].Parent.createdAt
+                        </td>
+                        <td></td>
+                        <td>
+                            <input type="text" class="medium-text" id="parent-comment-@Model[i].Parent.id" value="@Model[i].Parent.comment" />
+                        </td>
+                        <td>
+                            <button onclick="submitChange(@Model[i].Parent.id)">保存修改</button>
+                        </td>
+                    </tr>
+                }
+            } else
+            {
+                <h3>暂无预约记录</h3>
+            }
+
+        </tbody>
+    </table>
+</div>
+
+<script>
+    function submitChange(parentId) {
+
+        alert($('#parent-name-' + parentId).val())
+    }
+</script>

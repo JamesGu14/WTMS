@@ -11,17 +11,18 @@
 <body>
 
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="#">南通维特牧思 后台</a>
+        <a class="navbar-brand" href="#">南通维特牧思 管理后台</a>
         <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+        <ul class="navbar-nav mr-auto">
+                
+        </ul>
+        <form class="form-inline mt-2 mt-md-0 __web-inspector-hide-shortcut__" action="/Login/LogOff" method="post">
+            <p style="color: #ccc; position: relative; top: 8px">欢迎回来， @ViewBag.UserName </p>&nbsp;&nbsp;
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">退出登录</button>
+        </form>
 
-        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-            
-            <span class="form-inline mt-2 mt-md-0">
-                <p>欢迎回来， @ViewBag.UserName</p>
-            </span>
-        </div>
     </nav>
 
     <div class="container-fluid">
@@ -29,16 +30,24 @@
             <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar">
                 <ul class="nav nav-pills flex-column">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">试听课预约 @if (ViewBag.CurrentPage == "TRIAL") { <span class="sr-only">(current)</span> } </a>
+                        @if (ViewBag.CurrentPage == "HOME")
+                        {
+                            <a class="nav-link active" href="/">首页</a>
+                        }
+                        else
+                        {
+                            <a class="nav-link" href="/">首页</a>
+                        }
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Reports</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Analytics</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Export</a>
+                        @if (ViewBag.CurrentPage == "TRIAL")
+                        {
+                            <a class="nav-link active" href="/Home/TrialUser">试听课预约</a>
+                        }
+                        else
+                        {
+                            <a class="nav-link" href="/Home/TrialUser">试听课预约</a>
+                        }
                     </li>
                 </ul>
 
