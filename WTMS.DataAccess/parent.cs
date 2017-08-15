@@ -16,18 +16,24 @@ namespace WTMS.DataAccess
     {
         public parent()
         {
-            this.children = new HashSet<child>();
+            this.childParentRels = new HashSet<childParentRel>();
+            this.contactHistories = new HashSet<contactHistory>();
         }
     
         public int id { get; set; }
         public string username { get; set; }
         public string name { get; set; }
+        public string relationToChild { get; set; }
         public string mobile { get; set; }
         public string password { get; set; }
         public Nullable<System.DateTime> createdAt { get; set; }
         public Nullable<bool> isActive { get; set; }
         public Nullable<System.DateTime> deactivateAt { get; set; }
+        public Nullable<int> statusId { get; set; }
+        public string comment { get; set; }
     
-        public virtual ICollection<child> children { get; set; }
+        public virtual ICollection<childParentRel> childParentRels { get; set; }
+        public virtual ICollection<contactHistory> contactHistories { get; set; }
+        public virtual userStatu userStatu { get; set; }
     }
 }

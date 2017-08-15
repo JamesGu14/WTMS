@@ -11,8 +11,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WTMS.Backend", "WTMS.Backen
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WTMS.Service", "WTMS.Service\WTMS.Service.csproj", "{B3D11F0C-86EE-4FD2-A877-2DE67B8031A6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FE3E01AD-656E-4392-B6AD-20F21DA1B062} = {FE3E01AD-656E-4392-B6AD-20F21DA1B062}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WTMS.Common", "WTMS.Common\WTMS.Common.csproj", "{FE3E01AD-656E-4392-B6AD-20F21DA1B062}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WTMS.Mobile", "WTMS.Mobile\WTMS.Mobile.csproj", "{CA3923D2-66A0-4FB2-9881-5CF6EC42810B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B3D11F0C-86EE-4FD2-A877-2DE67B8031A6} = {B3D11F0C-86EE-4FD2-A877-2DE67B8031A6}
+		{FE3E01AD-656E-4392-B6AD-20F21DA1B062} = {FE3E01AD-656E-4392-B6AD-20F21DA1B062}
+		{4CC7B9C3-D237-49ED-AD2A-CC09D4D50760} = {4CC7B9C3-D237-49ED-AD2A-CC09D4D50760}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,6 +46,10 @@ Global
 		{FE3E01AD-656E-4392-B6AD-20F21DA1B062}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE3E01AD-656E-4392-B6AD-20F21DA1B062}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE3E01AD-656E-4392-B6AD-20F21DA1B062}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA3923D2-66A0-4FB2-9881-5CF6EC42810B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA3923D2-66A0-4FB2-9881-5CF6EC42810B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA3923D2-66A0-4FB2-9881-5CF6EC42810B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA3923D2-66A0-4FB2-9881-5CF6EC42810B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -12,6 +12,5 @@ namespace WTMS.DataAccess.ViewModel
 
     public class TrialParentViewModel
     {
-
     }
 }

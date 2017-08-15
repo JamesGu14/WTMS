@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WTMS.DataAccess;
 using WTMS.DataAccess.DomainModel;
 using WTMS.DataAccess.ViewModel;
@@ -35,6 +32,14 @@ namespace WTMS.Service
                 }
             }
             return null;
+        }
+
+        public List<systemuser> GetSalesList()
+        {
+            using (var dbContext = new ntwtmsEntities())
+            {
+                return dbContext.systemusers.Where(s => s.wtmsrole.rolename == "sales" && s.isActive == true).ToList();
+            }
         }
     }
 }

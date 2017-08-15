@@ -200,6 +200,10 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\WTMS.Common\WTMS.Common.csproj">
+      <Project>{FE3E01AD-656E-4392-B6AD-20F21DA1B062}</Project>
+      <Name>WTMS.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WTMS.DataAccess\WTMS.DataAccess.csproj">
       <Project>{4CC7B9C3-D237-49ED-AD2A-CC09D4D50760}</Project>
       <Name>WTMS.DataAccess</Name>

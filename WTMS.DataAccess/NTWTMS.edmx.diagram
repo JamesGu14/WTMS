@@ -5,13 +5,19 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="487463f52d8342cb859fe2ba4efdde71" Name="Diagram1">
-        <EntityTypeShape EntityType="ntwtmsModel.child" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ntwtmsModel.parent" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
         <EntityTypeShape EntityType="ntwtmsModel.saleshistory" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ntwtmsModel.wtmsrole" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
-        <AssociationConnector Association="ntwtmsModel.child_ibfk_1" ManuallyRouted="false" />
-        <AssociationConnector Association="ntwtmsModel.saleshistory_ibfk_1" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="ntwtmsModel.systemuser" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="ntwtmsModel.child" Width="1.5" PointX="3" PointY="0.75" />
+        <EntityTypeShape EntityType="ntwtmsModel.childParentRel" Width="1.5" PointX="9.875" PointY="4.375" />
+        <EntityTypeShape EntityType="ntwtmsModel.contactHistory" Width="1.5" PointX="9.875" PointY="9.75" />
+        <EntityTypeShape EntityType="ntwtmsModel.parent" Width="1.5" PointX="7.625" PointY="6.25" />
+        <EntityTypeShape EntityType="ntwtmsModel.systemuser" Width="1.5" PointX="3" PointY="5" />
+        <EntityTypeShape EntityType="ntwtmsModel.userStatu" Width="1.5" PointX="5.375" PointY="7.25" />
+        <EntityTypeShape EntityType="ntwtmsModel.wtmsrole" Width="1.5" PointX="0.75" PointY="5.75" />
+        <AssociationConnector Association="ntwtmsModel.childparentrel_ibfk_1" />
+        <AssociationConnector Association="ntwtmsModel.saleshistory_ibfk_1" />
+        <AssociationConnector Association="ntwtmsModel.childparentrel_ibfk_2" />
+        <AssociationConnector Association="ntwtmsModel.contacthistory_ibfk_1" />
+        <AssociationConnector Association="ntwtmsModel.parent_ibfk_1" />
         <AssociationConnector Association="ntwtmsModel.saleshistory_ibfk_2" />
         <AssociationConnector Association="ntwtmsModel.systemuser_ibfk_1" />
         </Diagram>

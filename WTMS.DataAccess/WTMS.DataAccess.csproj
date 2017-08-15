@@ -50,6 +50,13 @@
     <Compile Include="child.cs">
       <DependentUpon>NTWTMS.tt</DependentUpon>
     </Compile>
+    <Compile Include="childParentRel.cs">
+      <DependentUpon>NTWTMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="contactHistory.cs">
+      <DependentUpon>NTWTMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModel\BookingModel.cs" />
     <Compile Include="DomainModel\SystemUserModel.cs" />
     <Compile Include="NTWTMS.Context.cs">
       <AutoGen>True</AutoGen>
@@ -76,7 +83,11 @@
     <Compile Include="systemuser.cs">
       <DependentUpon>NTWTMS.tt</DependentUpon>
     </Compile>
+    <Compile Include="userStatu.cs">
+      <DependentUpon>NTWTMS.tt</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\LoginViewModel.cs" />
+    <Compile Include="ViewModel\UserViewModel.cs" />
     <Compile Include="wtmsrole.cs">
       <DependentUpon>NTWTMS.tt</DependentUpon>
     </Compile>

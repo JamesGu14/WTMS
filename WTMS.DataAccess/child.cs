@@ -16,18 +16,19 @@ namespace WTMS.DataAccess
     {
         public child()
         {
+            this.childParentRels = new HashSet<childParentRel>();
             this.saleshistories = new HashSet<saleshistory>();
         }
     
         public int id { get; set; }
-        public Nullable<int> parentId { get; set; }
         public string name { get; set; }
+        public string nickName { get; set; }
         public Nullable<int> birthYear { get; set; }
         public Nullable<int> birthMonth { get; set; }
         public string gender { get; set; }
         public string comment { get; set; }
     
-        public virtual parent parent { get; set; }
+        public virtual ICollection<childParentRel> childParentRels { get; set; }
         public virtual ICollection<saleshistory> saleshistories { get; set; }
     }
 }

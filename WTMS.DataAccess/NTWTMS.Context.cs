@@ -25,10 +25,13 @@ namespace WTMS.DataAccess
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<child> children { get; set; }
-        public DbSet<parent> parents { get; set; }
         public DbSet<saleshistory> saleshistories { get; set; }
-        public DbSet<wtmsrole> wtmsroles { get; set; }
+        public DbSet<child> children { get; set; }
+        public DbSet<childParentRel> childParentRels { get; set; }
+        public DbSet<contactHistory> contactHistories { get; set; }
+        public DbSet<parent> parents { get; set; }
         public DbSet<systemuser> systemusers { get; set; }
+        public DbSet<userStatu> userStatus { get; set; }
+        public DbSet<wtmsrole> wtmsroles { get; set; }
     }
 }
