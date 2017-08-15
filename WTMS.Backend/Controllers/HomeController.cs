@@ -16,5 +16,10 @@ namespace WTMS.Backend.Controllers
             ViewBag.UserName = User.Identity.Name;
             return View();
         }
+
+        public ActionResult TrialUser()
+        {
+            return View();
+        }
     }
 }
