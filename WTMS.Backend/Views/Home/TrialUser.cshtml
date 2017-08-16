@@ -38,43 +38,44 @@
                 {
                     <tr>
                         <td>
-                            <input type="text" class="short-text form-control" id="child-@Model.Parents[i].Children.ElementAt(0).Id" value="@Model.Parents[i].Children.ElementAt(0).Name" />
+                            <span>@Model.Parents[i].Children.ElementAt(0).Name </span>
                             @for (var j = 1; j < Model.Parents[i].Children.ToList().Count; j++)
                             {
-                                <br />
-                                <input type="text" class="short-text form-control" id="child-@Model.Parents[i].Children.ElementAt(j).Id" value="@Model.Parents[i].Children.ElementAt(j).Name" />
+                                <span>&nbsp; / &nbsp;</span>
+                                <span>@Model.Parents[i].Children.ElementAt(j).Name</span>
                             }
                         </td>
                         <td>
-                            <input type="text" class="short-text form-control" id="parent-name-@Model.Parents[i].Parent.Id" value="@Model.Parents[i].Parent.Name" />
+                            <p>@Model.Parents[i].Parent.Name</p>
                         </td>
                         <td>
-                            <input type="text" class="short-text form-control" id="parent-rel-@Model.Parents[i].Parent.Id" value="@Model.Parents[i].Parent.RelationToChild" />
+                            <p>@Model.Parents[i].Parent.RelationToChild</p>
                         </td>
                         <td>
-                            <input type="text" class="medium-text form-control" id="parent-phone-@Model.Parents[i].Parent.Id" value="@Model.Parents[i].Parent.Mobile" />
+                            <p>@Model.Parents[i].Parent.Mobile</p>
                         </td>
                         <td class="medium-text">
                             @Model.Parents[i].Parent.CreatedAt
                         </td>
                         <td>
-                            <select class="form-control" id="parent-status-@Model.Parents[i].Parent.Id">
                                 @for (var m = 0; m < @Model.UserStatus.Count; m++)
                                 {
                                     if (@Model.Parents[i].Parent.StatusId == @Model.UserStatus[m].id)
                                     {
-                                        <option value="@Model.UserStatus[m].id" selected>@Model.UserStatus[m].statusName</option>
-                                    }
-                                    else
-                                    {
-                                        <option value="@Model.UserStatus[m].id">@Model.UserStatus[m].statusName</option>
-                                    }
+                                        if (@Model.Parents[i].Parent.StatusId <= 2)
+                                        {
+                                            <p class="text-danger">@Model.UserStatus[m].statusName</p>
+                                        }
+                                        else
+                                        {
+                                            <p>@Model.UserStatus[m].statusName</p>
+                                        }
 
+                                    }
                                 }
-                            </select>
                         </td>
                         <td>
-                            <input type="text" class="medium-text form-control" id="parent-comment-@Model.Parents[i].Parent.Id" value="@Model.Parents[i].Parent.Comment" />
+                            <p>@Model.Parents[i].Parent.Comment </p>
                         </td>
                         <td>
                             @*<button onclick="submitChange(@Model.Parents[i].Parent.id)">保存修改</button>*@
