@@ -65,10 +65,18 @@
                             @Model.Parents[i].Parent.createdAt
                         </td>
                         <td>
-                            <select class="form-control">
+                            <select class="form-control" id="parent-status-@Model.Parents[i].Parent.id">
                                 @for (var m = 0; m < @Model.UserStatus.Count; m++)
                                 {
-                                    
+                                    if (@Model.Parents[i].Parent.statusId == @Model.UserStatus[m].id)
+                                    {
+                                        <option value="@Model.UserStatus[m].id" selected>@Model.UserStatus[m].statusName</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@Model.UserStatus[m].id">@Model.UserStatus[m].statusName</option>
+                                    }
+
                                 }
                             </select>
                         </td>
