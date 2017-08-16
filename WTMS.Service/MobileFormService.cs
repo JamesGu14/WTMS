@@ -10,6 +10,9 @@ namespace WTMS.Service
     {
         public bool RegisterInterest(BookingModel bookingModel)
         {
+            // Log booking model
+            LogHelper.Log(typeof(MobileFormService), bookingModel.ToString());
+
             using (var dbContext = new ntwtmsEntities())
             {
                 try
@@ -26,7 +29,7 @@ namespace WTMS.Service
 
                     // Check if phone number exists or not, if not, Save parent info
                     var existingParent = dbContext.parents.FirstOrDefault(p => p.mobile == bookingModel.ParentPhone);
-                    var parentId = existingParent.id;
+                    var parentId = 0;
                     if (existingParent == null)
                     {
                         var newParent = dbContext.parents.Add(new parent
@@ -36,6 +39,9 @@ namespace WTMS.Service
                             statusId = 1
                         });
                         parentId = newParent.id;
+                    } else
+                    {
+                        parentId = existingParent.id;
                     }
 
                     // Save child info
@@ -65,7 +71,7 @@ namespace WTMS.Service
                     dbContext.SaveChanges();
                 } catch(Exception exc)
                 {
-                    LogHelper.Log(typeof(MobileFormService), exc);
+                    LogHelper.Log(typeof(MobileFormService), exc.StackTrace);
                 }
                 
                 return true;

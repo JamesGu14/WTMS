@@ -36,35 +36,35 @@
                 {
                     <tr>
                         <td>
-                            <input type="text" class="short-text" id="child-@Model[i].Children.ElementAt(0).id" value="@Model[i].Children.ElementAt(0).name" />
+                            <input type="text" class="short-text form-control" id="child-@Model[i].Children.ElementAt(0).id" value="@Model[i].Children.ElementAt(0).name" />
                             @for (var j = 1; j < Model[i].Children.ToList().Count; j ++) {
                                 <br />
-                                <input type="text" class="short-text" id="child-@Model[i].Children.ElementAt(j).id" value="@Model[i].Children.ElementAt(j).name" />
+                                <input type="text" class="short-text form-control" id="child-@Model[i].Children.ElementAt(j).id" value="@Model[i].Children.ElementAt(j).name" />
                             }
                         </td>
                         <td>
-                            <input type="text" class="short-text" id="child-@Model[i].Children.ElementAt(0).id" value="@Model[i].Children.ElementAt(0).nickName" />
+                            <input type="text" class="short-text form-control" id="child-@Model[i].Children.ElementAt(0).id" value="@Model[i].Children.ElementAt(0).nickName" />
                             @for (var j = 1; j < Model[i].Children.ToList().Count; j++)
                             {
                                 <br />
-                                <input type="text" class="short-text" id="child-@Model[i].Children.ElementAt(j).id" value="@Model[i].Children.ElementAt(j).nickName" />
+                                <input type="text" class="short-text form-control" id="child-@Model[i].Children.ElementAt(j).id" value="@Model[i].Children.ElementAt(j).nickName" />
                             }
                         </td>
                         <td>
-                            <input type="text" class="short-text" id="parent-name-@Model[i].Parent.id" value="@Model[i].Parent.name" />
+                            <input type="text" class="short-text form-control" id="parent-name-@Model[i].Parent.id" value="@Model[i].Parent.name" />
                         </td>
                         <td>
-                            <input type="text" class="short-text" id="parent-rel-@Model[i].Parent.id" value="@Model[i].Parent.relationToChild" />
+                            <input type="text" class="short-text form-control" id="parent-rel-@Model[i].Parent.id" value="@Model[i].Parent.relationToChild" />
                         </td>
                         <td>
-                            <input type="text" class="medium-text" id="parent-phone-@Model[i].Parent.id" value="@Model[i].Parent.mobile" />
+                            <input type="text" class="medium-text form-control" id="parent-phone-@Model[i].Parent.id" value="@Model[i].Parent.mobile" />
                         </td>
                         <td class="medium-text">
                             @Model[i].Parent.createdAt
                         </td>
                         <td></td>
                         <td>
-                            <input type="text" class="medium-text" id="parent-comment-@Model[i].Parent.id" value="@Model[i].Parent.comment" />
+                            <input type="text" class="medium-text form-control" id="parent-comment-@Model[i].Parent.id" value="@Model[i].Parent.comment" />
                         </td>
                         <td>
                             <button onclick="submitChange(@Model[i].Parent.id)">保存修改</button>
