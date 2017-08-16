@@ -16,7 +16,7 @@ namespace WTMS.DataAccess
     {
         public child()
         {
-            this.childParentRels = new HashSet<childParentRel>();
+            this.childparentrels = new HashSet<childparentrel>();
             this.saleshistories = new HashSet<saleshistory>();
         }
     
@@ -28,7 +28,7 @@ namespace WTMS.DataAccess
         public string gender { get; set; }
         public string comment { get; set; }
     
-        public virtual ICollection<childParentRel> childParentRels { get; set; }
+        public virtual ICollection<childparentrel> childparentrels { get; set; }
         public virtual ICollection<saleshistory> saleshistories { get; set; }
     }
 }

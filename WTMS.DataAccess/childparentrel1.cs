@@ -12,16 +12,13 @@ namespace WTMS.DataAccess
     using System;
     using System.Collections.Generic;
     
-    public partial class userstatu
+    public partial class childparentrel1
     {
-        public userstatu()
-        {
-            this.parents = new HashSet<parent>();
-        }
-    
         public int id { get; set; }
-        public string statusName { get; set; }
+        public Nullable<int> childId { get; set; }
+        public Nullable<int> parentId { get; set; }
     
-        public virtual ICollection<parent> parents { get; set; }
+        public virtual child child { get; set; }
+        public virtual parent parent { get; set; }
     }
 }

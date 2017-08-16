@@ -50,14 +50,15 @@
     <Compile Include="child.cs">
       <DependentUpon>NTWTMS.tt</DependentUpon>
     </Compile>
-    <Compile Include="childParentRel.cs">
+    <Compile Include="childparentrel.cs">
       <DependentUpon>NTWTMS.tt</DependentUpon>
     </Compile>
-    <Compile Include="contactHistory.cs">
+    <Compile Include="contacthistory.cs">
       <DependentUpon>NTWTMS.tt</DependentUpon>
     </Compile>
     <Compile Include="DomainModel\BookingModel.cs" />
     <Compile Include="DomainModel\SystemUserModel.cs" />
+    <Compile Include="ModelMapping\ModelMapping.cs" />
     <Compile Include="NTWTMS.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -83,7 +84,7 @@
     <Compile Include="systemuser.cs">
       <DependentUpon>NTWTMS.tt</DependentUpon>
     </Compile>
-    <Compile Include="userStatu.cs">
+    <Compile Include="userstatu.cs">
       <DependentUpon>NTWTMS.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\LoginViewModel.cs" />
@@ -96,11 +97,11 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
     <EntityDeploy Include="NTWTMS.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>NTWTMS.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="App.Config" />
     <None Include="NTWTMS.edmx.diagram">
       <DependentUpon>NTWTMS.edmx</DependentUpon>
     </None>
@@ -109,8 +110,8 @@
   <ItemGroup>
     <Content Include="NTWTMS.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>NTWTMS.Context.cs</LastGenOutput>
       <DependentUpon>NTWTMS.edmx</DependentUpon>
+      <LastGenOutput>NTWTMS.Context.cs</LastGenOutput>
     </Content>
     <Content Include="NTWTMS.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -118,6 +119,5 @@
       <LastGenOutput>NTWTMS.cs</LastGenOutput>
     </Content>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

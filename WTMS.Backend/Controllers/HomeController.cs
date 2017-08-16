@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Linq;
+using System.Web.Mvc;
 using WTMS.Backend.App_Start;
 using WTMS.Common;
 using WTMS.DataAccess.ViewModel;
@@ -32,7 +33,7 @@ namespace WTMS.Backend.Controllers
             ViewBag.CurrentPage = "TRIAL";
             ViewBag.UserName = User.Identity.Name;
 
-            var parentList = _clientUserService.GetParentList();
+            var parentList = _clientUserService.GetParentList().ToList();
             var statusList = _referenceDataService.GetAllUserStatus();
 
             return View(new ParentListViewModel

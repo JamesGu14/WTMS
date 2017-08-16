@@ -8,13 +8,13 @@ namespace WTMS.Service
 {
     public class ReferenceDataService
     {
-        public List<userStatu> GetAllUserStatus()
+        public List<userstatu> GetAllUserStatus()
         {
             using(var dbContext = new ntwtmsEntities())
             {
                 try
                 {
-                    var resultList = dbContext.userStatus.ToList();
+                    var resultList = dbContext.userstatus.ToList();
                     return resultList;
 
                 } catch (Exception e)

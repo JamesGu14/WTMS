@@ -11,6 +11,7 @@
     .short-text {
         width: 75px;
     }
+
     .medium-text {
         width: 120px;
     }
@@ -21,14 +22,13 @@
         <thead>
             <tr>
                 <th>孩子姓名</th>
-                <th>孩子昵称</th>
                 <th>家长姓名</th>
                 <th>和宝宝关系</th>
                 <th>手机号</th>
                 <th>注册时间</th>
                 <th>状态</th>
                 <th>备注</th>
-                <th>操作</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -38,37 +38,30 @@
                 {
                     <tr>
                         <td>
-                            <input type="text" class="short-text form-control" id="child-@Model.Parents[i].Children.ElementAt(0).id" value="@Model.Parents[i].Children.ElementAt(0).name" />
-                            @for (var j = 1; j < Model.Parents[i].Children.ToList().Count; j ++) {
-                                <br />
-                                <input type="text" class="short-text form-control" id="child-@Model.Parents[i].Children.ElementAt(j).id" value="@Model.Parents[i].Children.ElementAt(j).name" />
-                            }
-                        </td>
-                        <td>
-                            <input type="text" class="short-text form-control" id="child-@Model.Parents[i].Children.ElementAt(0).id" value="@Model.Parents[i].Children.ElementAt(0).nickName" />
+                            <input type="text" class="short-text form-control" id="child-@Model.Parents[i].Children.ElementAt(0).Id" value="@Model.Parents[i].Children.ElementAt(0).Name" />
                             @for (var j = 1; j < Model.Parents[i].Children.ToList().Count; j++)
                             {
                                 <br />
-                                <input type="text" class="short-text form-control" id="child-@Model.Parents[i].Children.ElementAt(j).id" value="@Model.Parents[i].Children.ElementAt(j).nickName" />
+                                <input type="text" class="short-text form-control" id="child-@Model.Parents[i].Children.ElementAt(j).Id" value="@Model.Parents[i].Children.ElementAt(j).Name" />
                             }
                         </td>
                         <td>
-                            <input type="text" class="short-text form-control" id="parent-name-@Model.Parents[i].Parent.id" value="@Model.Parents[i].Parent.name" />
+                            <input type="text" class="short-text form-control" id="parent-name-@Model.Parents[i].Parent.Id" value="@Model.Parents[i].Parent.Name" />
                         </td>
                         <td>
-                            <input type="text" class="short-text form-control" id="parent-rel-@Model.Parents[i].Parent.id" value="@Model.Parents[i].Parent.relationToChild" />
+                            <input type="text" class="short-text form-control" id="parent-rel-@Model.Parents[i].Parent.Id" value="@Model.Parents[i].Parent.RelationToChild" />
                         </td>
                         <td>
-                            <input type="text" class="medium-text form-control" id="parent-phone-@Model.Parents[i].Parent.id" value="@Model.Parents[i].Parent.mobile" />
+                            <input type="text" class="medium-text form-control" id="parent-phone-@Model.Parents[i].Parent.Id" value="@Model.Parents[i].Parent.Mobile" />
                         </td>
                         <td class="medium-text">
-                            @Model.Parents[i].Parent.createdAt
+                            @Model.Parents[i].Parent.CreatedAt
                         </td>
                         <td>
-                            <select class="form-control" id="parent-status-@Model.Parents[i].Parent.id">
+                            <select class="form-control" id="parent-status-@Model.Parents[i].Parent.Id">
                                 @for (var m = 0; m < @Model.UserStatus.Count; m++)
                                 {
-                                    if (@Model.Parents[i].Parent.statusId == @Model.UserStatus[m].id)
+                                    if (@Model.Parents[i].Parent.StatusId == @Model.UserStatus[m].id)
                                     {
                                         <option value="@Model.UserStatus[m].id" selected>@Model.UserStatus[m].statusName</option>
                                     }
@@ -81,25 +74,165 @@
                             </select>
                         </td>
                         <td>
-                            <input type="text" class="medium-text form-control" id="parent-comment-@Model.Parents[i].Parent.id" value="@Model.Parents[i].Parent.comment" />
+                            <input type="text" class="medium-text form-control" id="parent-comment-@Model.Parents[i].Parent.Id" value="@Model.Parents[i].Parent.Comment" />
                         </td>
                         <td>
-                            <button onclick="submitChange(@Model.Parents[i].Parent.id)">保存修改</button>
+                            @*<button onclick="submitChange(@Model.Parents[i].Parent.id)">保存修改</button>*@
+
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#editModal" onclick="loadModalInfo(@Model.Parents[i].Parent.Id)">
+                                详情
+                            </button>
                         </td>
                     </tr>
                 }
-            } else
+            }
+            else
             {
-                <h3>暂无预约记录</h3>
+                <tr><td><h3>暂无预约记录</h3></td></tr>
             }
 
         </tbody>
     </table>
 </div>
 
-<script>
-    function submitChange(parentId) {
 
-        alert($('#parent-name-' + parentId).val())
+
+<!-- Popup edit panel -->
+<div class="modal fade bd-example-modal-lg" tabindex="-1" id="editModal" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">客户详情</h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="container">
+                    <input type="text" id="hidden-parent-id" hidden />
+
+                    <form class="form-horizontal">
+
+                        <div class="form-group row">
+                            <label for="edit-parent-name" class="col-sm-4 control-label">家长姓名：</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="edit-parent-name" placeholder="">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="edit-parent-rel" class="col-sm-4 control-label">和宝宝关系：</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="edit-parent-rel" placeholder="">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="edit-parent-phone" class="col-sm-4 control-label">手机号：</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="edit-parent-phone" placeholder="">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="edit-parent-status" class="col-sm-4 control-label">状态：</label>
+                            <div class="col-sm-8">
+                                <select class="form-control" id="edit-parent-status">
+                                    @for (var m = 0; m < @Model.UserStatus.Count; m++)
+                                    {
+                                        <option value="@Model.UserStatus[m].id">@Model.UserStatus[m].statusName</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="edit-parent-comment" class="col-sm-4 control-label">备注：</label>
+                            <textarea id="edit-parent-comment" class="form-control"></textarea>
+                        </div>
+                        <div id="edit-children-section">
+                            @* Value set in Javascript*@
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" id="cancelBtn" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" onclick="submitChange()">保存修改</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function submitChange() {
+
+        var parentId = $('#hidden-parent-id').val()
+        var parentRel = $('#edit-parent-rel').val()
+        var parentName = $('#edit-parent-name').val()
+        var parentPhone = $('#edit-parent-phone').val()
+        var parentStatus = $('#edit-parent-status').val()
+        var parentComment = $('#edit-parent-comment').val()
+
+        var children = $('input[id^=hidden-child]')
+        var childrenList = []
+
+        for (var i = 0; i < children.length; i++) {
+            var childrenId = children[i].value
+            var childrenName = $('#edit-child-' + i + '-name').val()
+            childrenList.push({
+                Id: childrenId,
+                Name: childrenName
+            })
+        }
+
+        $.ajax({
+            url: '/ClientUser/UpdateParentChildren',
+            type: 'POST',
+            data: {
+                Parent: {
+                    Id: parentId,
+                    Name: parentName,
+                    RelationToChild: parentRel,
+                    Mobile: parentPhone,
+                    StatusId: parentStatus,
+                    Comment: parentComment
+                },
+                Children: childrenList
+            },
+            success: function (data) {
+                debugger;
+                if (data == true) {
+                    $('#cancelBtn').click()
+                    alert('修改成功')
+                } else {
+                    alert('修改失败，请尝试刷新页面重新修改或联系James')
+                }
+            }
+        })
+    }
+
+    function loadModalInfo(parentId) {
+
+        $.get('/ClientUser/Children?parentId=' + parentId, function (data, status) {
+            if (status == 'success' && data != null) {
+                $('#hidden-parent-id').val(data.Parent.Id)
+                $('#edit-parent-rel').val(data.Parent.RelationToChild)
+                $('#edit-parent-name').val(data.Parent.Name)
+                $('#edit-parent-phone').val(data.Parent.Mobile)
+                $('#edit-parent-status').val(data.Parent.StatusId)
+                $('#edit-parent-comment').val(data.Parent.Comment)
+
+                var childrenSection = ''
+                for (var i = 0; i < data.Children.length; i++) {
+                    childrenSection += '<input type="text" id="hidden-child-' + i + '-id" value="' + data.Children[i].Id + '" hidden />' +
+                        '<div class="form-group row">' +
+                        '    <label for="edit-child-name" class="col-sm-4 control-label">孩子' + (i + 1) + '姓名：</label>' +
+                        '    <div class="col-sm-8">' +
+                        '        <input type="text" class="form-control" id="edit-child-' + i + '-name" value="' + data.Children[i].Name + '" placeholder="">' +
+                        '    </div>' +
+                        '</div>';
+                }
+                $('#edit-children-section').html(childrenSection)
+            } else {
+                alert('连接失败，请联系James')
+            }
+        })
     }
 </script>

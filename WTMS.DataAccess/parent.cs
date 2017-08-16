@@ -16,8 +16,8 @@ namespace WTMS.DataAccess
     {
         public parent()
         {
-            this.childParentRels = new HashSet<childParentRel>();
-            this.contactHistories = new HashSet<contactHistory>();
+            this.childparentrels = new HashSet<childparentrel>();
+            this.contacthistories = new HashSet<contacthistory>();
         }
     
         public int id { get; set; }
@@ -26,14 +26,14 @@ namespace WTMS.DataAccess
         public string relationToChild { get; set; }
         public string mobile { get; set; }
         public string password { get; set; }
-        public Nullable<System.DateTime> createdAt { get; set; }
-        public Nullable<bool> isActive { get; set; }
+        public System.DateTime createdAt { get; set; }
+        public bool isActive { get; set; }
         public Nullable<System.DateTime> deactivateAt { get; set; }
-        public Nullable<int> statusId { get; set; }
+        public int statusId { get; set; }
         public string comment { get; set; }
     
-        public virtual ICollection<childParentRel> childParentRels { get; set; }
-        public virtual ICollection<contactHistory> contactHistories { get; set; }
-        public virtual userStatu userStatu { get; set; }
+        public virtual ICollection<childparentrel> childparentrels { get; set; }
+        public virtual ICollection<contacthistory> contacthistories { get; set; }
+        public virtual userstatu userstatu { get; set; }
     }
 }

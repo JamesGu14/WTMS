@@ -53,7 +53,7 @@ namespace WTMS.Service
                     });
 
                     // Save child and parent relationship
-                    dbContext.childParentRels.Add(new childParentRel
+                    dbContext.childparentrels.Add(new childparentrel
                     {
                         childId = newChild.id,
                         parentId = parentId,

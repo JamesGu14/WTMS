@@ -12,7 +12,7 @@ namespace WTMS.DataAccess
     using System;
     using System.Collections.Generic;
     
-    public partial class childParentRel
+    public partial class childparentrel
     {
         public int id { get; set; }
         public Nullable<int> childId { get; set; }

@@ -12,7 +12,7 @@ namespace WTMS.DataAccess
     using System;
     using System.Collections.Generic;
     
-    public partial class contactHistory
+    public partial class contacthistory
     {
         public int id { get; set; }
         public Nullable<int> parentId { get; set; }
