@@ -14,5 +14,12 @@ namespace WTMS.DataAccess.ViewModel
     {
         public parent Parent { get; set; }
         public IEnumerable<child> Children { get; set; }
+        public IEnumerable<userStatu> UserStatus { get; set; }
+    }
+
+    public class ParentListViewModel
+    {
+        public List<ParentViewModel> Parents;
+        public List<userStatu> UserStatus;
     }
 }

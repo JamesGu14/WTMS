@@ -1,6 +1,7 @@
 ﻿using System.Web.Mvc;
 using WTMS.Backend.App_Start;
 using WTMS.Common;
+using WTMS.DataAccess.ViewModel;
 using WTMS.Service;
 
 namespace WTMS.Backend.Controllers
@@ -9,10 +10,14 @@ namespace WTMS.Backend.Controllers
     public class HomeController : Controller
     {
         private readonly SystemUserService _systemUserService;
+        private readonly ClientUserService _clientUserService;
+        private readonly ReferenceDataService _referenceDataService;
 
         public HomeController ()
         {
             _systemUserService = new SystemUserService();
+            _referenceDataService = new ReferenceDataService();
+            _clientUserService = new ClientUserService();
         }
 
         public ActionResult Index()
@@ -26,8 +31,15 @@ namespace WTMS.Backend.Controllers
         {
             ViewBag.CurrentPage = "TRIAL";
             ViewBag.UserName = User.Identity.Name;
-            var parentList = _systemUserService.GetParentList();
-            return View(parentList);
+
+            var parentList = _clientUserService.GetParentList();
+            var statusList = _referenceDataService.GetAllUserStatus();
+
+            return View(new ParentListViewModel
+            {
+                Parents = parentList,
+                UserStatus = statusList
+            });
         }
     }
 }

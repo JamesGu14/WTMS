@@ -45,8 +45,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClientUserService.cs" />
     <Compile Include="MobileFormService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReferenceDataService.cs" />
     <Compile Include="SystemUserService.cs" />
   </ItemGroup>
   <ItemGroup>
