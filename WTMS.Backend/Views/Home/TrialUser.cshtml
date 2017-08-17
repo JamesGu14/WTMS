@@ -58,21 +58,21 @@
                             @Model.Parents[i].Parent.CreatedAt
                         </td>
                         <td>
-                                @for (var m = 0; m < @Model.UserStatus.Count; m++)
+                            @for (var m = 0; m < @Model.UserStatus.Count; m++)
+                            {
+                                if (@Model.Parents[i].Parent.StatusId == @Model.UserStatus[m].id)
                                 {
-                                    if (@Model.Parents[i].Parent.StatusId == @Model.UserStatus[m].id)
+                                    if (@Model.Parents[i].Parent.StatusId <= 2)
                                     {
-                                        if (@Model.Parents[i].Parent.StatusId <= 2)
-                                        {
-                                            <p class="text-danger">@Model.UserStatus[m].statusName</p>
-                                        }
-                                        else
-                                        {
-                                            <p>@Model.UserStatus[m].statusName</p>
-                                        }
-
+                                        <p class="text-danger">@Model.UserStatus[m].statusName</p>
                                     }
+                                    else
+                                    {
+                                        <p>@Model.UserStatus[m].statusName</p>
+                                    }
+
                                 }
+                            }
                         </td>
                         <td>
                             <p>@Model.Parents[i].Parent.Comment </p>
@@ -162,6 +162,15 @@
 </div>
 
 <script>
+    var yearList = []
+    var monthList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    $(document).ready(function () {
+        var currentYear = new Date().getFullYear()
+        for (var i = currentYear; i > currentYear - 6; i--) {
+            yearList.push(i)
+        }
+    })
+
     function submitChange() {
 
         var parentId = $('#hidden-parent-id').val()
@@ -174,7 +183,7 @@
         var children = $('input[id^=hidden-child]')
         var childrenList = []
 
-        for (var i = 0; i < children.length; i++) {
+        for (var i = 0; i < children.length; i--) {
             var childrenId = children[i].value
             var childrenName = $('#edit-child-' + i + '-name').val()
             childrenList.push({
@@ -220,15 +229,78 @@
                 $('#edit-parent-status').val(data.Parent.StatusId)
                 $('#edit-parent-comment').val(data.Parent.Comment)
 
+                // Attach children section
                 var childrenSection = ''
                 for (var i = 0; i < data.Children.length; i++) {
-                    childrenSection += '<input type="text" id="hidden-child-' + i + '-id" value="' + data.Children[i].Id + '" hidden />' +
+
+                    // Prepare year and month dropdown items
+                    var yearOptions = ''
+                    var monthOptions = ''
+                    $.each(yearList, function (index, value) {
+                        if (data.Children[i].BirthYear == value) {
+                            yearOptions += ('<option value="' + value + '" selected>' + value + '</option>')
+                        } else {
+                            yearOptions += ('<option value="' + value + '">' + value + '</option>')
+                        }
+                    })
+
+                    $.each(monthList, function (index, value) {
+                        if (data.Children[i].BirthMonth == value) {
+                            monthOptions += ('<option value="' + value + '" selected>' + value + '</option>')
+                        } else {
+                            monthOptions += ('<option value="' + value + '">' + value + '</option>')
+                        }
+                    })
+
+                    var babyGender = data.Children[i].Gender
+                    
+                    var currentChildrenSection = '<input type="text" id="hidden-child-' + i + '-id" value="' + data.Children[i].Id + '" hidden />' +
                         '<div class="form-group row">' +
                         '    <label for="edit-child-name" class="col-sm-4 control-label">孩子' + (i + 1) + '姓名：</label>' +
                         '    <div class="col-sm-8">' +
                         '        <input type="text" class="form-control" id="edit-child-' + i + '-name" value="' + data.Children[i].Name + '" placeholder="">' +
                         '    </div>' +
+                        '</div>' +
+                        '<div class="form-group row">' +
+                        '   <label for="edit-child-gender" class="col-sm-4 control-label">孩子' + (i + 1) + '性别：</label>' +
+                        '   <div class="col-sm-8">' +
+                        '       <div class="form-check form-check-inline">' +
+                        '           <label class="form-check-label">' +
+                        '               <input class="form-check-input" type="radio" name="child-' + i + '-gender" id="child-' + i + '-gender-m" value="M"'; 
+                    
+                    if (babyGender == 'M') {
+                        currentChildrenSection += 'checked="checked"'
+                    }
+                    currentChildrenSection += '> 男宝宝' +
+                        '           </label>' +
+                        '       </div>' +
+                        '       <div class="form-check form-check-inline">' +
+                        '          <label class="form-check-label">' +
+                        '              <input class="form-check-input" type="radio" name="child-' + i + '-gender" id="child-' + i + '-gender-f" value="F"';
+
+                    if (babyGender == 'F') {
+                        currentChildrenSection += 'checked="checked"'
+                    }
+                    currentChildrenSection += '> 女宝宝' +
+                        '          </label>' +
+                        '       </div>' +
+                        '   </div>' +
+                        '</div>' +
+                        '<div class=" form-group row">' +
+                        '    <label for="edit-child-birthday" class="col-sm-4 control-label">孩子' + (i + 1) + '生日：</label>' +
+                        '    <div class="col-sm-2">' +
+                        '       <select class="custom-select" id="child-' + i + '-year">' +
+                        yearOptions + 
+                        '       </select>' +
+                        '    </div>' +
+                        '    <div class="col-sm-2">' +
+                        '       <select class="custom-select" id="child-' + i + '-month">' +
+                        monthOptions + 
+                        '       </select>' +
+                        '   </div>' +
                         '</div>';
+
+                    childrenSection += currentChildrenSection
                 }
                 $('#edit-children-section').html(childrenSection)
             } else {

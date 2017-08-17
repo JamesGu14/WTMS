@@ -24,6 +24,9 @@
 </small>
 <br /><br />
 <form name="form" action="#" method="post">
+    <label for="text-basic">联系电话：</label>
+    <input type="text" name="phone" id="phone" value="">
+
     <label for="babyname">宝宝姓名：</label>
     <input type="text" name="babyname" id="babyname" value="">
 
@@ -45,8 +48,13 @@
         </select>
     </fieldset>
 
-    <label for="text-basic">联系电话：</label>
-    <input type="text" name="phone" id="phone" value="">
+    <fieldset data-role="controlgroup" data-type="horizontal">
+        <legend>Horizontal:</legend>
+        <input type="radio" name="gender" id="gender-m" value="M">
+        <label for="gender-m">男宝宝</label>
+        <input type="radio" name="gender" id="gender-f" value="F">
+        <label for="gender-f">女宝宝</label>
+    </fieldset>
 
     <label for="text-basic">校区：</label>
     <fieldset data-role="controlgroup">
@@ -81,7 +89,14 @@
     $('#submit').click(function () {
         var babyName = $('form').find('input[name="babyname"]').val()
         var parentPhone = $('form').find('input[name ="phone"]').val()
-
+        var gender = ''
+        debugger;
+        if ($('#gender-m').is(':checked') && !$('#gender-f').is(':checked')) {
+            gender = 'M'
+        } else if (!$('#gender-m').is(':checked') && $('#gender-f').is(':checked')) {
+            gender = 'F'
+        }
+        
         if (babyName.replace(/ /g, '') == '') {
             alert('请输入宝宝姓名')
             return
@@ -102,6 +117,7 @@
             'parentPhone': parentPhone,
             'school': $('form').find('input[name="school"]').val(),
             'salesId': $('#sales').val(),
+            'gender': gender
         }, function (data, status) {
             if (data) {
                 location.href = "/Home/SubmitSuccess"

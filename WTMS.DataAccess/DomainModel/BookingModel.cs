@@ -8,11 +8,12 @@
         public string ParentPhone { get; set; }
         public string School { get; set; }
         public int? SalesId { get; set; }
+        public string Gender { get; set; }
 
         public string ToString()
         {
             return "BabyName: " + BabyName + "; Birth: " + BirthYear + "-" + BirthMonth
-                + "; ParentPhone: " + ParentPhone + "; SalesId: " + SalesId;
+                + "; ParentPhone: " + ParentPhone + "; SalesId: " + SalesId + "; Gender: " + Gender;
         }
     }
 }

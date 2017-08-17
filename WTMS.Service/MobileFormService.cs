@@ -49,7 +49,8 @@ namespace WTMS.Service
                     {
                         name = bookingModel.BabyName,
                         birthMonth = bookingModel.BirthMonth,
-                        birthYear = bookingModel.BirthYear
+                        birthYear = bookingModel.BirthYear,
+                        gender = bookingModel.Gender
                     });
 
                     // Save child and parent relationship
