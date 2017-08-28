@@ -172,7 +172,7 @@
     })
 
     function submitChange() {
-
+        debugger
         var parentId = $('#hidden-parent-id').val()
         var parentRel = $('#edit-parent-rel').val()
         var parentName = $('#edit-parent-name').val()
@@ -183,12 +183,22 @@
         var children = $('input[id^=hidden-child]')
         var childrenList = []
 
-        for (var i = 0; i < children.length; i--) {
-            var childrenId = children[i].value
+        for (var i = 0; i < children.length; i++) {
+            var childrenId = $('#hidden-child-' + i + '-id').val()
             var childrenName = $('#edit-child-' + i + '-name').val()
+            var childGender = ''
+            if ($('input[id^=child-' + i + '-gender-]:checked').length == 1) {
+                childGender = $('input[id^=child-' + i + '-gender-]:checked')[0].value
+            }
+            var birthYear = $('#child-' + i + '-year').val()
+            var birthMonth = $('#child-' + i + '-month').val()
+
             childrenList.push({
                 Id: childrenId,
-                Name: childrenName
+                Name: childrenName,
+                Gender: childGender,
+                BirthYear: birthYear,
+                BirthMonth: birthMonth
             })
         }
 
@@ -207,7 +217,6 @@
                 Children: childrenList
             },
             success: function (data) {
-                debugger;
                 if (data == true) {
                     $('#cancelBtn').click()
                     alert('修改成功')
@@ -269,7 +278,7 @@
                         '               <input class="form-check-input" type="radio" name="child-' + i + '-gender" id="child-' + i + '-gender-m" value="M"'; 
                     
                     if (babyGender == 'M') {
-                        currentChildrenSection += 'checked="checked"'
+                        currentChildrenSection += 'checked'
                     }
                     currentChildrenSection += '> 男宝宝' +
                         '           </label>' +
@@ -279,7 +288,7 @@
                         '              <input class="form-check-input" type="radio" name="child-' + i + '-gender" id="child-' + i + '-gender-f" value="F"';
 
                     if (babyGender == 'F') {
-                        currentChildrenSection += 'checked="checked"'
+                        currentChildrenSection += 'checked'
                     }
                     currentChildrenSection += '> 女宝宝' +
                         '          </label>' +

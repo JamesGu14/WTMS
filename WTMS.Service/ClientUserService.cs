@@ -151,10 +151,16 @@ namespace WTMS.Service
                     }
 
                     existingChild.name = childViewModel.Name;
+                    existingChild.gender = childViewModel.Gender;
+                    existingChild.birthYear = childViewModel.BirthYear;
+                    existingChild.birthMonth = childViewModel.BirthMonth;
 
                     dbContext.children.Attach(existingChild);
                     var entry = dbContext.Entry(existingChild);
                     entry.Property(e => e.name).IsModified = true;
+                    entry.Property(e => e.gender).IsModified = true;
+                    entry.Property(e => e.birthYear).IsModified = true;
+                    entry.Property(e => e.birthMonth).IsModified = true;
                     dbContext.SaveChanges();
 
                     return true;

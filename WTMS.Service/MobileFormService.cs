@@ -78,5 +78,52 @@ namespace WTMS.Service
                 return true;
             }
         }
+
+        public int FakeReadingCount(DateTime startDateTime)
+        {
+            var now = DateTime.Now;
+            var timeSpan = now - startDateTime;
+
+            var days = timeSpan.TotalDays;
+            var totalCount = 0.0;
+            var baseInterval = 0.6;
+            var intervalIncreasement = 0.25;
+            for (var i = 0; i < days; i ++)
+            {
+                totalCount += 24 * 6 * baseInterval;
+                baseInterval += intervalIncreasement;
+            }
+
+            totalCount += (timeSpan.TotalDays - (int)timeSpan.TotalDays) * 24 * 6 * baseInterval;
+
+            return (int)totalCount;
+        }
+
+        public int FakeParticipateCount(DateTime startDateTime)
+        {
+            var now = DateTime.Now;
+            var timeSpan = now - startDateTime;
+
+            int days = (int) Math.Ceiling(timeSpan.TotalDays);
+            int totalCount = 0;
+            int[] dayRegister = new int[] { 10, 6, 5, 5, 4, 6, 4, 4, 3, 1, 0 };
+
+            for (var i = 0; i < days - 1; i++)
+            {
+                if (i < dayRegister.Count())
+                {
+                    totalCount += dayRegister[i];
+                }
+            }
+
+            if (days < dayRegister.Count())
+            {
+                var todayRegister = dayRegister[days - 1];
+                int upTillNowCount = (int) Math.Min((double)(now.Hour - 8) / 12 * todayRegister, todayRegister);
+                totalCount += upTillNowCount;
+            }
+
+            return totalCount;
+        }
     }
 }

@@ -152,6 +152,11 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Images\Activity\bronze.bmp" />
+    <Content Include="Content\Images\Activity\golden.bmp" />
+    <Content Include="Content\Images\Activity\joiner.bmp" />
+    <Content Include="Content\Images\Activity\silver.bmp" />
+    <Content Include="Content\Images\Activity\qr.jpg" />
     <Content Include="Content\Images\ajax-loader.gif" />
     <Content Include="Content\Images\icons-png\action-black.png" />
     <Content Include="Content\Images\icons-png\action-white.png" />
@@ -361,6 +366,7 @@
     <Content Include="Content\Images\Icon\yanhua.png" />
     <Content Include="Content\Images\Icon\yanhua_reverse.png" />
     <Content Include="Content\Images\ntwtms_banner.jpg" />
+    <Content Include="Content\Images\sports.png" />
     <Content Include="Content\Images\wechat_qrcode.jpg" />
     <Content Include="Content\index.css" />
     <Content Include="Content\jquery.mobile-1.4.5.min.css" />
@@ -405,6 +411,8 @@
     <Content Include="Views\Home\MyPage.cshtml" />
     <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Views\Home\SubmitSuccess.cshtml" />
+    <Content Include="Views\Home\Activity.cshtml" />
+    <Content Include="Views\Shared\_ActivityLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

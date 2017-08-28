@@ -9,7 +9,7 @@ namespace WebApplication1.Controllers
         private readonly MobileFormService formService;
         private readonly SystemUserService userService;
 
-        public HomeController ()
+        public HomeController()
         {
             formService = new MobileFormService();
             userService = new SystemUserService();
@@ -62,6 +62,16 @@ namespace WebApplication1.Controllers
             return View();
         }
 
+        // 活动页面
+        public ActionResult Activity()
+        {
+            // Set reading
+            var startDate = new System.DateTime(2017, 8, 25, 20, 0, 0);
+            ViewBag.ReadingCount = formService.FakeReadingCount(startDate);
+            ViewBag.RegisterCount = formService.FakeParticipateCount(startDate);
+            return View();
+        }
+        
         [HttpPost]
         public bool SubmitBooking(BookingModel bookingModel)
         {

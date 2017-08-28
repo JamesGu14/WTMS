@@ -35,6 +35,11 @@ namespace WTMS.Backend.Controllers
             return Json(parentViewModel, JsonRequestBehavior.AllowGet);
         }
 
+        /// <summary>
+        /// Update parent children model
+        /// </summary>
+        /// <param name="parentChildrenViewModel"></param>
+        /// <returns></returns>
         [HttpPost]
         public JsonResult UpdateParentChildren(ParentChildrenViewModel parentChildrenViewModel)
         {
