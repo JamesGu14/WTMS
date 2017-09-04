@@ -47,7 +47,7 @@
             <ul>
                 <li><a id="homelink" href="#" data-icon="home" class="ui-btn-active">首页</a></li>
                 <li><a id="bookinglink" href="#" data-icon="star">免费试听课</a></li>
-                <li><a id="mylink" href="#" data-icon="gear">运动会</a></li>
+                <li><a id="mylink" href="#" data-icon="gear">我的</a></li>
             </ul>
         </div>
         <!-- /navbar -->
@@ -67,7 +67,7 @@
                 $('#bookinglink').addClass('ui-btn-active')
                 $('#homelink').removeClass('ui-btn-active')
                 $('#mylink').removeClass('ui-btn-active')
-            } else if (location.href.indexOf('/Home/Activity') > -1) {
+            } else if (location.href.indexOf('/Home/MyPage') > -1) {
                 $('#homelink').removeClass('ui-btn-active')
                 $('#bookinglink').removeClass('ui-btn-active')
                 $('#mylink').addClass('ui-btn-active')
@@ -82,7 +82,7 @@
             })
 
             $('#mylink').click(function () {
-                location.href = '/Home/Activity'
+                location.href = '/Home/MyPage'
             })
         })
     </script>
