@@ -22,10 +22,11 @@ namespace WebApplication1.Controllers
 
         public ActionResult Register(int? salesId)
         {
-            var salesList = userService.GetSalesList();
-            if (salesId != null && salesId.HasValue)
-                ViewBag.SelectedSales = salesId.Value;
-            return View(salesList);
+            //var salesList = userService.GetSalesList();
+            //if (salesId != null && salesId.HasValue)
+            //    ViewBag.SelectedSales = salesId.Value;
+            //return View(salesList);
+            return View();
         }
 
         // 课程介绍
